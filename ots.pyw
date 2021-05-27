@@ -5,6 +5,8 @@ import sys
 #Change these two with your onetimesecret.com email and API key
 Username="" #Your onetimesecret email address EG: matt@example.com
 APIKey="" #Your onetimesecret API key, EG: 68747470733a2f2f7777772e796f75747562652e636f6d2f77617463683f763d6451773477395767586351
+DefaultTimeOut="259200" #Default time out in secs if the users just hits enter on the prompt
+DefaultTimeOutFriendlyName="3 Days" #Put your time out in a nice way when running the prompt
 
 
 #Function to check API is ok
@@ -53,11 +55,16 @@ def GenURL(Secret_Key):
 #Ask for secret
 Secret=input("Enter secret string: ")
 
-#Get timeout in secs, default is 3 days
-TimeOut=input("Enter the secrets timeout in secs or press enter to default to 3 days: ")
+#Check there is at least one character in the secret
+if len(Secret) < 1:
+    print("Empty secret provided, quitting")
+    exit()
+
+#Get timeout in secs, otherwise load the default at the top of the script
+TimeOut=input("Enter the timeout for your secret in secs or press enter for {0}: ".format(DefaultTimeOutFriendlyName))
 
 if TimeOut.strip() == "":
-    TimeOut="259200"
+    TimeOut=DefaultTimeOut
 else:
     try:
         TimeOut=int(TimeOut)
