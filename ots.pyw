@@ -1,6 +1,5 @@
 from requests import request
 import json
-import sys
 
 #Change these two with your onetimesecret.com email and API key
 Username="" #Your onetimesecret email address EG: matt@example.com
