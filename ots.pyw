@@ -50,6 +50,25 @@ def GenURL(Secret_Key):
     return URL
 
 
+#Function to turn user input into secs
+def ConvertTimeToSecs(TimeOut):
+    #Try seprate the input of units and numbers into their own values
+    TimeOutUnit=TimeOut[-1].lower()  #Turn last part of inout into our unit
+    if TimeOutUnit.isalpha() and TimeOutUnit in TimeUnitsFactors.keys(): #Check this is both a letter, and one of our keys in the TimeUnitsFactors dict
+        TimeOutNum=TimeOut[:-1] #Get the rest of the string
+        if TimeOutNum.isnumeric(): #Make sure the rest is a number
+            TimeOutNum=int(TimeOutNum) #Turn that into an int for math later
+        else:
+            print("Invalid timeout length")
+            exit()
+    else:
+        print("Incorrect unit of time")
+        exit()
+    TimeOutInSecs=TimeOutNum * TimeUnitsFactors[TimeOutUnit]
+
+    return TimeOutInSecs
+
+
 ###Main bit###
 #Ask for secret
 Secret=input("Enter secret string: ")
@@ -60,20 +79,15 @@ if len(Secret) < 1:
     exit()
 
 #Get timeout in secs, otherwise load the default at the top of the script
-TimeOut=input("Enter the timeout for your secret in secs or press enter for {0}: ".format(DefaultTimeOutFriendlyName))
+TimeOut=input("Enter the timeout for your secret in secs or press enter for {0}: ".format(DefaultTimeOut))
 
 if TimeOut.strip() == "":
-    TimeOut=DefaultTimeOut
+    TimeOut=ConvertTimeToSecs(DefaultTimeOut)
 else:
-    try:
-        TimeOut=int(TimeOut)
-    except:
-        print("Error: Timeout value was not a number")
-        exit()
-
+    TimeOut=ConvertTimeToSecs(TimeOut)
 
 #Create our URL
 if APIOnline() == True:
     SecretJSON=CreateSecret(Secret,str(TimeOut))
-
+    print("\nShare the link below:")
     print(GenURL(SecretJSON["secret_key"]))
