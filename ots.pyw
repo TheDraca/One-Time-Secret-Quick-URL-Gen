@@ -4,8 +4,8 @@ import json
 #Change these two with your onetimesecret.com email and API key
 Username="" #Your onetimesecret email address EG: matt@example.com
 APIKey="" #Your onetimesecret API key, EG: 68747470733a2f2f7777772e796f75747562652e636f6d2f77617463683f763d6451773477395767586351
-DefaultTimeOut="259200" #Default time out in secs if the users just hits enter on the prompt
-DefaultTimeOutFriendlyName="3 Days" #Put your time out in a nice way when running the prompt
+DefaultTimeOut="3d" #Default time out in secs if the users just hits enter on the prompt
+TimeUnitsFactors={"s": 1, "m": 60, "h": 3600, "d": 86400, "w": 604800} #Directory to specfiy how to turn units into correct secs
 
 
 #Function to check API is ok
