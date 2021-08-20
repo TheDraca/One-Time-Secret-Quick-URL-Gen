@@ -1,0 +1,9 @@
+{
+    "API": {
+        "Username": "matt@example.com",
+        "Key": "68747470733a2f2f7777772e796f75747562652e636f6d2f77617463683f763d6451773477395767586351"
+    },
+    "Settings": {
+        "DefaultTimeOut": "3d"
+    }
+}
