@@ -10,8 +10,11 @@ Small script that will ask for a secret and timeout then generate a onetimesecre
 - onetimesecret.com account
 
 
-## Security stuff:
+## Installation:
+- Download & extract the zip file on the releases page
+- Edit OTS.json and add in your onetimesecret.com username and API Key
+- For Linux/MacOS run unixInstall.sh as your normal user
+- For Windows double click the windowsInstall.bat
 
+## Security Stuff:
 Please ensure if you are storing your API Key in this you at minimum have locked down the file to just your user on your operating system of choice.
-
-I take 0 responsibility for leaked keys or anything as per GPL 3 😊
