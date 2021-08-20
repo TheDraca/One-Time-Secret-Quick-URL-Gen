@@ -1,12 +1,28 @@
 from requests import request
+import os
 import json
+import JsonControl
 
-#Change these two with your onetimesecret.com email and API key
-Username="" #Your onetimesecret email address EG: matt@example.com
-APIKey="" #Your onetimesecret API key, EG: 68747470733a2f2f7777772e796f75747562652e636f6d2f77617463683f763d6451773477395767586351
-DefaultTimeOut="3d" #Default time out in secs if the users just hits enter on the prompt
+####Settings setup#######
+#Check if we have our settins file
+if os.path.exists("OTS.json") == False:
+    #Settings file does not exist, generating
+    print("JSON File Missing, one has been genrated for you in the same directory as this script")
+    JsonControl.GenJSONFile()
+    exit()
+
+#Pull settings from out json file
+try:
+    Username=JsonControl.GetItem("API","Username")
+    APIKey=JsonControl.GetItem("API","Key")
+    DefaultTimeOut=JsonControl.GetItem("Settings","DefaultTimeOut")
+except KeyError:
+    print("JSON File has not been configured yet, quitting ")
+    exit()
+
+
+#Build time factors directory
 TimeUnitsFactors={"s": 1, "m": 60, "h": 3600, "d": 86400, "w": 604800} #Directory to specfiy how to turn units into correct secs
-
 
 #Function to check API is ok
 def APIOnline(Username=Username,APIKey=APIKey):
@@ -15,7 +31,6 @@ def APIOnline(Username=Username,APIKey=APIKey):
         if "Not authorized" not in str(Response):  
             Status = Response.json()["status"]
             if Status == "nominal":
-
                 return True
             else:
                 return False
