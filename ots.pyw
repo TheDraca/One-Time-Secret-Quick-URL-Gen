@@ -128,5 +128,7 @@ else:
 #Create our URL
 if APIOnline(Username,APIKey) == True:
     SecretJSON=CreateSecret(Secret,str(TimeOut))
-    print("\nShare the link below:")
+    if TimeOut > 1209600: #Check that the time out isn't over 14 days,as this is the max onetimesecret currently allows.
+        print("\nWARNING: Your timeout is over 14 days, onetimesecret only supports a max of 14 days. This secret has been created but will only last 14 days\n")
+    print("Share the link below:")
     print(GenURL(SecretJSON["secret_key"]))
