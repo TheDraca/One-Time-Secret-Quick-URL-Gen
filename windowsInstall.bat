@@ -3,7 +3,7 @@
 :: Check if we have python
 python --version 3
 if errorlevel 1 goto NoPython3
-else
+
 echo "Installing requests just in case it isn't already"
 pip3 install requests
 echo.
