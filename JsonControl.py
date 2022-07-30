@@ -1,11 +1,12 @@
 import json
 
 def GenJSONFile(Filename="OTS.json"):
-    with open(Filename, "w") as JSONFile:
+    with open(Filename, "w+") as JSONFile:
         FileContents={
             "API": {
+                "URL": "",
                 "Username" : "",
-                "APIKey" : ""
+                "Key" : ""
             },
             "Settings": {
                 "DefaultTimeOut": "3d"
@@ -26,4 +27,3 @@ def SaveItem(ItemKey, ItemName, Item, Filename="OTS.json"):
     with open(Filename, "w+") as JSONFile:
         (Contents[ItemKey])[ItemName] = Item
         json.dump(Contents,JSONFile)
-        
