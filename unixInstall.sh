@@ -15,11 +15,9 @@ if test -f "$HOME/.zshrc"; then
     if ! grep -q "alias ots='(cd $HOME/.ots && python3 ots.pyw && cd - > /dev/null)'" $HOME/.zshrc ; then
         echo "ZSH RC File found but alias not setup, creating ots alias now"
         echo "alias ots='(cd $HOME/.ots && python3 ots.pyw && cd - > /dev/null)'" >> $HOME/.zshrc
+    else
+        echo "OTS alias already setup for ZSH RC, skipping"
     fi
-#Check if we don't have a bash profile OR a zsh profile and warn about it
-else ! test -f "$HOME/.bash_profile"
-    echo "No ZSH File or bash profile, guessing you are using bash and putting the alias in a new bash_profile"
-    touch "$HOME/.bash_profile"
 fi
 
 #If there's a bash profile file add alias to it
@@ -27,6 +25,8 @@ if test -f "$HOME/.bash_profile"; then
     if ! grep -q "alias ots='(cd $HOME/.ots && python3 ots.pyw && cd - > /dev/null)'" $HOME/.bash_profile ; then
         echo "Bash RC File found but alias not setup, creating ots alias now"
         echo "alias ots='(cd $HOME/.ots && python3 ots.pyw && cd - > /dev/null)'" >> $HOME/.bash_profile
+    else
+        echo "OTS alias already setup for bash profile, skipping"
     fi
 fi
 
