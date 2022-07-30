@@ -36,7 +36,7 @@ def FirstTimeSetup():
             JsonControl.SaveItem("API","URL",APIDomain)
             JsonControl.SaveItem("API","Username",Username)
             JsonControl.SaveItem("API","Key",APIKey)
-            print("API URL, Username + Key confimed as correct and saved! Please now re-run this script to get started\n")
+            print("API URL, Username + Key confimed as correct and saved! Now running as normal\n")
         except:
             print("Unknown error writing API Username + Key, quitting")
             exit()
@@ -56,14 +56,25 @@ elif len(JsonControl.GetItem("API","Username")) <1 or len(JsonControl.GetItem("A
     FirstTimeSetup()
 
 #Pull settings from out json file, if the config file exists
-try:
-    Username=JsonControl.GetItem("API","Username")
-    APIKey=JsonControl.GetItem("API","Key")
-    APIDomain=JsonControl.GetItem("API","URL")
-    DefaultTimeOut=JsonControl.GetItem("Settings","DefaultTimeOut")
-except KeyError:
-    print("JSON File has not been configured yet/is missing expected items. First time setup with run\n")
-    FirstTimeSetup()
+def TestSetup():
+    try:
+        JsonControl.GetItem("API","Username")
+        JsonControl.GetItem("API","Key")
+        JsonControl.GetItem("API","URL")
+        JsonControl.GetItem("Settings","DefaultTimeOut")
+    except KeyError:
+        print("JSON File has not been configured yet/is missing expected items. First time setup with run\n")
+        FirstTimeSetup()
+#Check all values are set
+TestSetup()
+#Import json values
+Username=JsonControl.GetItem("API","Username")
+APIKey=JsonControl.GetItem("API","Key")
+APIDomain=JsonControl.GetItem("API","URL")
+DefaultTimeOut=JsonControl.GetItem("Settings","DefaultTimeOut")
+
+
+
 
 
 #Build time factors directory
