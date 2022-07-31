@@ -7,7 +7,7 @@ Small script that will ask for a secret and timeout then generate a onetimesecre
 ## Requirements:
 - Python 3
 - Requests module (after installing python run either *pip install requests* or *pip3 install requests*)
-- onetimesecret.com account
+- onetimesecret.com account or an account with your self hosted one time secret
 
 
 ## Installation:
